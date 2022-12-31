@@ -1,9 +1,10 @@
-import Navigation from 'componentes/Navigation'
+import Header from "componentes/Header"
+
 
 const RootLayout = ({ children }) => {
   return (
     <main>
-      <Navigation />
+      <Header />
       {children}
     </main>
   )
