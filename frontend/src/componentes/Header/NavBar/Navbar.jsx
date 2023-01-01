@@ -11,11 +11,10 @@ const Navbar = () => {
         </Link>
         <div className={styles.box}>
           <Link href={'/profile'} className={styles.profileBtn}>
-            <ProfileIcon className={styles.profileIcon}  />
+            <ProfileIcon className={styles.profileIcon} />
             Profile
           </Link>
-
-          <input className={styles.searchBox} placeholder='search' />
+          <input className={styles.searchBox} placeholder="search" />
         </div>
       </div>
     </nav>
