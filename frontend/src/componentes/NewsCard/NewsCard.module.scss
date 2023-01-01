@@ -1,0 +1,52 @@
+.card {
+    width: 978px;
+    height: 280px;
+    background: #FFF;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 16px;
+    padding: 24px;
+}
+
+.infoBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.details {
+    display: flex;
+    flex-direction: row;
+    color: #9E9E9E;
+    align-items: center;
+
+    div {
+        margin: 0 10px;
+    }
+}
+
+.bookmarkIcon {
+    width: 22px;
+    height: 29px;
+}
+
+.title {
+    color: #6F6F6F;
+    font-size: 30px;
+    font-family: sans-serif;
+    border-bottom: 2px solid #6F6F6F;
+    padding-bottom: 4px;
+}
+
+.newsBody {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 22px;
+}
+
+.text {
+    color: #424242;
+    font-size: 18px;
+    line-height: 1.7;
+    padding-right: 20px;
+}
