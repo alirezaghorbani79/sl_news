@@ -47,11 +47,11 @@ app.use('/api/user/', userRoutes)
 app.use('/api/news', newsRoutes)
 
 
-User.hasMany(Class)
-Class.belongsTo(User)
+User.belongsToMany(Class)
+Class.hasMany(User, { through: 'rel' })
 
-News.hasOne(Class)
-Class.belongsToMany(News, {through: 'rel'})
+News.belongsTo(Class)
+Class.hasMany(News)
 
 
 module.exports = app
