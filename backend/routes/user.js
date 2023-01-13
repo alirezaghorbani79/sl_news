@@ -42,7 +42,7 @@ router.get('/bookmarks', auth, async (req, res) => {
 router.post('/bookmarks', auth, async (req, res) => {
     const news = await News.findOne({ where: { id: req.body.id } })
     if (!news) {
-        res.status(404).send('News not found!')
+        return res.status(404).send('News not found!')
     }
 
     const bookmark = await Bookmark.create({
@@ -55,7 +55,7 @@ router.post('/bookmarks', auth, async (req, res) => {
 router.delete('/bookmarks', auth, async (req, res) => {
     const news = await News.findOne({ where: { id: req.body.id } })
     if (!news) {
-        res.status(404).send('News not found!')
+        return res.status(404).send('News not found!')
     }
 
     await Bookmark.destroy({

@@ -2,7 +2,6 @@ const dotenv = require('dotenv')
 dotenv.config({ path: './config.env' })
 
 const app = require('./app')
-const Class = require('./models/class')
 const sequelize = require('./utils/database')
 
 const DB = process.env.DATABASE_LOCAL

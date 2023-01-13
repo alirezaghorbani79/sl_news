@@ -11,6 +11,7 @@ const newsRoutes = require('./routes/news')
 
 const { User } = require('./models/user')
 const { News } = require('./models/news')
+const Bookmark = require('./models/bookmark')
 
 const app = express()
 
