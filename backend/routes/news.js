@@ -45,8 +45,8 @@ router.put('/:id', [auth, admin], async (req, res) => {
 
     await News.update(
         {
-            title: req.params.title,
-            body: req.params.body
+            title: req.body.title,
+            body: req.body.body
         }, {
         where: {
             id: req.params.id
