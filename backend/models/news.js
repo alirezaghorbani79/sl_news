@@ -31,4 +31,16 @@ const News = sequelize.define('news', {
     }
 })
 
-module.exports = News
+function validateNews(news) {
+    const schema = {
+        title: Joi.string().min(5).max(50).required(),
+        body: Joi.string().min(5).max(2000).required(),
+        picture: Joi.string().required()
+    }
+
+    return Joi.validate(news, schema);
+}
+
+exports.News = News;
+exports.validate = validateNews;
+
