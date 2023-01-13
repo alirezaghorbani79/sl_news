@@ -53,9 +53,7 @@ router.put('/:id', [auth, admin], async (req, res) => {
         }
     });
 
-    console.log(news)
-
-    res.send(news);
+    res.send('News was updated successfully.');
 });
 
 module.exports = router
