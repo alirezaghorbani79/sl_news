@@ -35,7 +35,13 @@ router.put('/:id', [auth, admin], async (req, res) => {
     const { error } = validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
 
-    console.log(req.params.id)
+    const newsFound = await News.findOne({
+        where: {
+            id: req.params.id,
+        }
+    })
+    console.log(newsFound)
+
     const news = await News.update(
         {
             title: req.params.title,
