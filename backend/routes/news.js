@@ -29,5 +29,23 @@ router.post('/', [auth, admin], async (req, res) => {
     res.send(news);
 });
 
+router.put('/:id', [auth, admin], async (req, res) => {
+    const { error } = validate(req.body);
+    if (error) return res.status(400).send(error.details[0].message);
+
+
+    const news = await User.update(
+        {
+            title: req.params.title,
+            body: req.params.body
+        }, {
+        where: {
+            id: req.params.id
+        }
+    });
+
+    res.send(news);
+});
+
 module.exports = router
 
