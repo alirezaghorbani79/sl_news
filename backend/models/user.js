@@ -44,5 +44,5 @@ function validateUser(user) {
 }
 
 
-module.exports = User
+exports.User = User
 exports.validate = validateUser;
