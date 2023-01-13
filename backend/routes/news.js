@@ -35,14 +35,15 @@ router.put('/:id', [auth, admin], async (req, res) => {
     const { error } = validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
 
-    const newsFound = await News.findOne({
+    const news = await News.findOne({
         where: {
             id: req.params.id,
         }
     })
-    console.log(newsFound)
 
-    const news = await News.update(
+    if (!news) return res.status(404).send('The news with the given ID was not found.');
+
+    await News.update(
         {
             title: req.params.title,
             body: req.params.body
