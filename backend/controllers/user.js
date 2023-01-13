@@ -1,4 +1,4 @@
-const {User, validate} = require('../models/user')
+const { User, validate } = require('../models/user')
 const catchAsync = require('../utils/catchAsync')
 const jwt = require('jsonwebtoken')
 
@@ -11,25 +11,25 @@ const signToken = (id, isAdmin) => {
 
 const createSendToken = (user, statusCode, req, res) => {
     const token = signToken(user.id, user.isAdmin)
-  
+
     res.cookie('jwt', token, {
-      expires: new Date(
-        Date.now() + 3600 * 24 * 60 * 60 * 1000
-      ),
-      httpOnly: true,
-      secure: req.secure || req.headers['x-forwarded-proto'] === 'https',
+        expires: new Date(
+            Date.now() + 3600 * 24 * 60 * 60 * 1000
+        ),
+        httpOnly: true,
+        secure: req.secure || req.headers['x-forwarded-proto'] === 'https',
     })
-  
+
     user.password = undefined
-  
+
     res.status(statusCode).json({
-      status: 'success',
-      token,
-      data: {
-        user,
-      },
+        status: 'success',
+        token,
+        data: {
+            user,
+        },
     })
-  }
+}
 
 
 exports.signUp = catchAsync(async (req, res, next) => {
@@ -48,9 +48,9 @@ exports.signUp = catchAsync(async (req, res, next) => {
 
 
 exports.login = catchAsync(async (req, res, next) => {
-    const user = await User.findOne({ where: { email: req.body.email }})
+    const user = await User.findOne({ where: { email: req.body.email } })
 
-    if(!user) {
+    if (!user) {
         res.status(404).send('User not found!')
     }
 
@@ -63,9 +63,9 @@ exports.login = catchAsync(async (req, res, next) => {
 })
 
 exports.updateMe = catchAsync(async (req, res) => {
-    const user = await User.findOne({ where: { id: req.user.id}})
+    const user = await User.findOne({ where: { id: req.user.id } })
 
-    if(!user) {
+    if (!user) {
         res.status(404).send('User not found!')
     }
 

@@ -11,7 +11,6 @@ const newsRoutes = require('./routes/news')
 
 const { User } = require('./models/user')
 const { News } = require('./models/news')
-const Class = require('./models/class')
 
 const app = express()
 
@@ -47,11 +46,8 @@ app.use('/api/user/', userRoutes)
 app.use('/api/news', newsRoutes)
 
 
-User.belongsToMany(Class, { through: 'rel' })
-Class.belongsToMany(User, { through: 'rel' })
-
-News.belongsTo(Class)
-Class.hasMany(News)
+User.belongsToMany(News, { through: 'rel' })
+News.belongsToMany(User, { through: 'rel' })
 
 
 module.exports = app
