@@ -4,7 +4,6 @@ const helmet = require('helmet')
 const rateLimit = require('express-rate-limit')
 const xss = require('xss-clean')
 const cookieParser = require('cookie-parser')
-const compression = require('compression')
 const cors = require('cors')
 
 const app = express()
@@ -36,8 +35,6 @@ const limiter = rateLimit({
 // app.use('/api', limiter)
 app.use(cookieParser())
 app.use(xss())
-app.use(compression())
 
-app.use(globalErrorHandler)
 
 module.exports = app
