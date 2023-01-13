@@ -29,7 +29,7 @@ const News = sequelize.define('news', {
     },
 })
 
-function validateNews(news) {
+function validateCreate(news) {
     const schema = Joi.object({
         title: Joi.string().min(5).max(50).required(),
         body: Joi.string().min(5).max(2000).required(),
@@ -39,6 +39,16 @@ function validateNews(news) {
     return schema.validate(news);
 }
 
+function validateUpdate(news) {
+    const schema = Joi.object({
+        title: Joi.string().min(5).max(50).required(),
+        body: Joi.string().min(5).max(2000).required(),
+    })
+
+    return schema.validate(news);
+}
+
 exports.News = News;
-exports.validate = validateNews;
+exports.validateCreate = validateCreate;
+exports.validateUpdate = validateUpdate;
 

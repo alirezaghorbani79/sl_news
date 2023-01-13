@@ -1,4 +1,4 @@
-const { News, validate } = require('../models/news');
+const { News, validateUpdate, validateCreate } = require('../models/news');
 const express = require('express');
 const auth = require('../middleware/auth')
 const admin = require('../middleware/admin')
@@ -20,7 +20,7 @@ router.get('/:id', async (req, res) => {
 });
 
 router.post('/', [auth, admin], async (req, res) => {
-    const { error } = validate(req.body);
+    const { error } = validateCreate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
 
     const news = await News.create({
@@ -32,7 +32,7 @@ router.post('/', [auth, admin], async (req, res) => {
 });
 
 router.put('/:id', [auth, admin], async (req, res) => {
-    const { error } = validate(req.body);
+    const { error } = validateUpdate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
 
     const news = await News.findOne({
@@ -56,5 +56,24 @@ router.put('/:id', [auth, admin], async (req, res) => {
     res.send('News was updated successfully.');
 });
 
-module.exports = router
+router.delete('/:id', [auth, admin], async (req, res) => {
+    const news = await News.findOne({
+        where: {
+            id: req.params.id,
+        }
+    })
 
+    if (!news) return res.status(404).send('The news with the given ID was not found.');
+
+    await News.destroy({
+        where: {
+            id: req.params.id
+        }
+    });
+
+    res.send('News was deleted successfully.');
+});
+
+
+
+module.exports = router
