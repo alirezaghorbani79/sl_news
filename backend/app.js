@@ -7,6 +7,7 @@ const cookieParser = require('cookie-parser')
 const cors = require('cors')
 
 const userRoutes = require('./routes/user')
+const newsRoutes = require('./routes/news')
 
 const app = express()
 
@@ -42,6 +43,7 @@ app.use(xss())
 
 
 app.use('/api/user/', userRoutes)
+app.use('/api/news', newsRoutes)
 
 
 

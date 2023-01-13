@@ -1,5 +1,7 @@
 const Sequelize = require('sequelize')
 const sequelize = require('../utils/database')
+const Joi = require('joi')
+
 
 const News = sequelize.define('news', {
     id: {
@@ -25,20 +27,16 @@ const News = sequelize.define('news', {
         type: Sequelize.STRING,
         allowNull: false,
     },
-    date: {
-        type: Sequelize.DATE,
-        defaultValue: Date.now(),
-    }
 })
 
 function validateNews(news) {
-    const schema = {
+    const schema = Joi.object({
         title: Joi.string().min(5).max(50).required(),
         body: Joi.string().min(5).max(2000).required(),
         picture: Joi.string().required()
-    }
+    })
 
-    return Joi.validate(news, schema);
+    return schema.validate(news);
 }
 
 exports.News = News;
