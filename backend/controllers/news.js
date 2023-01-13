@@ -14,6 +14,10 @@ exports.getOneNews = catchAsync(async (req, res) => {
             id: req.params.id,
         }
     })
+
+    news.viewCount++
+    news.save()
+
     res.send(news);
 })
 
