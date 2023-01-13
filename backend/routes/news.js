@@ -35,8 +35,8 @@ router.put('/:id', [auth, admin], async (req, res) => {
     const { error } = validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
 
-
-    const news = await User.update(
+    console.log(req.params.id)
+    const news = await News.update(
         {
             title: req.params.title,
             body: req.params.body
@@ -45,6 +45,8 @@ router.put('/:id', [auth, admin], async (req, res) => {
             id: req.params.id
         }
     });
+
+    console.log(news)
 
     res.send(news);
 });
