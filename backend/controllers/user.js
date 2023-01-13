@@ -33,6 +33,9 @@ const createSendToken = (user, statusCode, req, res) => {
 
 
 exports.signUp = catchAsync(async (req, res, next) => {
+    const { error } = validate(req.body)
+
+    if (error) return res.status(400).send(error.details[0].message)
     const newUser = await User.create({
         name: req.body.name,
         email: req.body.email,
@@ -45,6 +48,10 @@ exports.signUp = catchAsync(async (req, res, next) => {
 
 
 exports.login = catchAsync(async (req, res, next) => {
+    const { error } = validate(req.body)
+
+    if (error) return res.status(400).send(error.details[0].message)
+    
     const user = await User.findOne({ where: { email: req.body.email }})
 
     if(!user) {
