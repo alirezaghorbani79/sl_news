@@ -30,7 +30,12 @@ const User = sequelize.define('user', {
         type: Sequelize.BOOLEAN,
         allowNull: false,
         defaultValue: false,
-    }
+    },
+    favoriteClasses: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        defaultValue: 'sport,politics,economics,technology,health',
+    },
 })
 
 
