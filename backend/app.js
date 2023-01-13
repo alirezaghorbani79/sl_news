@@ -46,8 +46,11 @@ app.use('/api/user/', userRoutes)
 app.use('/api/news', newsRoutes)
 
 
-User.belongsToMany(News, { through: 'rel' })
-News.belongsToMany(User, { through: 'rel' })
+User.hasMany(Bookmark)
+Bookmark.belongsTo(User)
+
+News.hasMany(Bookmark)
+Bookmark.belongsTo(News)
 
 
 module.exports = app
