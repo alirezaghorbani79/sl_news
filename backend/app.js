@@ -9,6 +9,10 @@ const cors = require('cors')
 const userRoutes = require('./routes/user')
 const newsRoutes = require('./routes/news')
 
+const User = require('./models/user')
+const News = require('./models/news')
+const Class = require('./models/class')
+
 const app = express()
 
 app.use('/assets', express.static('assets'))
@@ -39,21 +43,15 @@ const limiter = rateLimit({
 app.use(cookieParser())
 app.use(xss())
 
-
-
-
 app.use('/api/user/', userRoutes)
 app.use('/api/news', newsRoutes)
 
 
+User.hasMany(Class)
+Class.BelongsToMany(User)
 
-
-
-
-
-
-
-
+News.HasOne(Class)
+Class.BelongsToMany(News)
 
 
 module.exports = app
