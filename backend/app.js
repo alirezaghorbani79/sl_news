@@ -9,8 +9,8 @@ const cors = require('cors')
 const userRoutes = require('./routes/user')
 const newsRoutes = require('./routes/news')
 
-const User = require('./models/user')
-const News = require('./models/news')
+const { User } = require('./models/user')
+const { News } = require('./models/news')
 const Class = require('./models/class')
 
 const app = express()
@@ -48,10 +48,10 @@ app.use('/api/news', newsRoutes)
 
 
 User.hasMany(Class)
-Class.BelongsToMany(User)
+Class.belongsTo(User)
 
-News.HasOne(Class)
-Class.BelongsToMany(News)
+News.hasOne(Class)
+Class.belongsToMany(News, {through: 'rel'})
 
 
 module.exports = app

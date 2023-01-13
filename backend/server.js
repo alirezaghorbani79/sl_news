@@ -9,8 +9,8 @@ const DB = process.env.DATABASE_LOCAL
 const port = process.env.PORT || 5000
 
 sequelize
-  // .sync({ force: true })
-  .sync()
+  .sync({ force: true })
+//   .sync()
   // .then((result) => {
   //   return Movie.create({
   //     name: 'clifford the big red dog',
