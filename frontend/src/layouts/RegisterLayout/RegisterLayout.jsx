@@ -4,7 +4,7 @@ import styles from './RegisterLayout.module.scss'
 const RegisterLayout = ({ children }) => {
   return (
     <>
-      <Navigation />
+      <Navigation fixed />
       <main className={styles.main}>
         <section className={styles.cardBody}>{children}</section>
       </main>

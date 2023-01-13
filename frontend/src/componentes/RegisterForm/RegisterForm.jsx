@@ -24,7 +24,7 @@ const RegisterForm = ({ title, inputs, ...props }) => {
       <Link href={'/signup'} className={styles.link}>
         don’t have an account? sign up
       </Link>
-      <Button onClick={loginHandler}>Log in</Button>
+      <Button onClick={loginHandler}>{title}</Button>
     </div>
   )
 }
