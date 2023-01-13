@@ -47,8 +47,8 @@ app.use('/api/user/', userRoutes)
 app.use('/api/news', newsRoutes)
 
 
-User.belongsToMany(Class)
-Class.hasMany(User, { through: 'rel' })
+User.belongsToMany(Class, { through: 'rel' })
+Class.belongsToMany(User, { through: 'rel' })
 
 News.belongsTo(Class)
 Class.hasMany(News)
