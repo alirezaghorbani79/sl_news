@@ -3,14 +3,14 @@ const catchAsync = require('../utils/catchAsync')
 const jwt = require('jsonwebtoken')
 
 
-const signToken = (id) => {
-    return jwt.sign({ id }, process.env.JWT_SECRET, {
+const signToken = (id, isAdmin) => {
+    return jwt.sign({ id, isAdmin }, process.env.JWT_SECRET, {
         expiresIn: 3600,
     })
 }
 
 const createSendToken = (user, statusCode, req, res) => {
-    const token = signToken(user.id)
+    const token = signToken(user.id, user.isAdmin)
   
     res.cookie('jwt', token, {
       expires: new Date(
@@ -48,18 +48,14 @@ exports.signUp = catchAsync(async (req, res, next) => {
 
 
 exports.login = catchAsync(async (req, res, next) => {
-    const { error } = validate(req.body)
-
-    if (error) return res.status(400).send(error.details[0].message)
-    
     const user = await User.findOne({ where: { email: req.body.email }})
 
     if(!user) {
-        // return error
+        res.status(404).send('User not found!')
     }
 
     if (user.password !== req.body.password) {
-        // return error
+        res.status(401).send('User not found!')
     }
 
     createSendToken(user, 200, req, res)
