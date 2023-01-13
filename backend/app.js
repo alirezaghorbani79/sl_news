@@ -23,7 +23,7 @@ app.use(cors(options))
 app.options('*', cors())
 
 // if (process.env.NODE_ENV === 'development') {
-  app.use(morgan('dev'))
+app.use(morgan('dev'))
 // }
 
 const limiter = rateLimit({
@@ -35,6 +35,21 @@ const limiter = rateLimit({
 // app.use('/api', limiter)
 app.use(cookieParser())
 app.use(xss())
+
+
+
+
+app.use('/api/news', news)
+
+
+
+
+
+
+
+
+
+
 
 
 module.exports = app
