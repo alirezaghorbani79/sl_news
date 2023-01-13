@@ -11,23 +11,4 @@ router.post('/', [auth, admin], newsController.createNews);
 router.put('/:id', [auth, admin], newsController.updateNews);
 router.delete('/:id', [auth, admin], newsController.deleteNews);
 
-router.post('/test', async (req, res) => {
-
-    const news = await News.create({
-        title: req.body.title,
-        body: 'body',
-        picture: 'picture'
-    })
-
-    await rel.create(
-        {
-            userId: news.id,
-            classId: 3
-        }
-    )
-
-    res.send();
-});
-
-
 module.exports = router
