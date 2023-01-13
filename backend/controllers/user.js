@@ -61,3 +61,24 @@ exports.login = catchAsync(async (req, res, next) => {
     createSendToken(user, 200, req, res)
 
 })
+
+exports.updateMe = catchAsync(async (req, res) => {
+    const user = await User.findOne({ where: { id: req.user.id}})
+
+    if(!user) {
+        res.status(404).send('User not found!')
+    }
+
+    await User.update(
+        {
+            email: req.body.email,
+            name: req.body.name,
+            password: req.body.password
+        }, {
+        where: {
+            id: req.params.id
+        }
+    });
+
+    res.send('User was updated successfully')
+})
