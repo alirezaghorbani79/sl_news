@@ -2,6 +2,7 @@ const dotenv = require('dotenv')
 dotenv.config({ path: './config.env' })
 
 const app = require('./app')
+const Class = require('./models/class')
 const sequelize = require('./utils/database')
 
 const DB = process.env.DATABASE_LOCAL
@@ -13,16 +14,8 @@ sequelize
 //   .sync({ force: true })
   .sync()
   // .then((result) => {
-  //   return Movie.create({
-  //     name: 'clifford the big red dog',
-  //     year: 2021,
-  //     director: 'walt becker',
-  //     duration: 96.,
-  //     genre: 'adventure, comedy, family',
-  //     stars: 'darby camp, jack whitehall, izaac wang',
-  //     rating: 6,
-  //     description: 'A young girls love for a tiny puppy named Clifford makes the dog grow to an enormous size.',
-  //     imgUrl: '123',
+  //   return Class.create({
+  //     name: 'Technology',
   //   })
   // })
   // .then((result) => {
