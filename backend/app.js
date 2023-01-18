@@ -21,13 +21,14 @@ app.use(helmet())
 app.use(express.json({ limit: '10kb' }))
 
 const options = {
-  origin: '*',
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  origin: true,
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   preflightContinue: false,
   optionsSuccessStatus: 204,
-}
-app.use(cors(options))
-app.options('*', cors())
+  credentials: true,
+};
+app.use(cors(options));
+app.options("*", cors());
 
 // if (process.env.NODE_ENV === 'development') {
 app.use(morgan('dev'))

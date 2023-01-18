@@ -73,8 +73,7 @@ exports.updateMe = catchAsync(async (req, res) => {
         {
             email: req.body.email,
             name: req.body.name,
-            password: req.body.password,
-            favoriteClasses: req.body.favoriteClasses
+            password: req.body.password
         }, {
         where: {
             id: req.params.id

@@ -28,7 +28,8 @@ exports.createNews = catchAsync(async (req, res) => {
     const news = await News.create({
         title: req.body.title,
         body: req.body.body,
-        picture: req.body.picture
+        picture: req.body.picture,
+        class: req.body.class
     })
     res.send(news);
 })

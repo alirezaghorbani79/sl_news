@@ -20,20 +20,25 @@ const News = sequelize.define('news', {
         defaultValue: 0,
     },
     body: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
         allowNull: false,
     },
     picture: {
         type: Sequelize.STRING,
         allowNull: false,
     },
+    class: {
+        type: Sequelize.STRING,
+        allowNull: false
+    }
 })
 
 function validateCreate(news) {
     const schema = Joi.object({
         title: Joi.string().min(5).max(50).required(),
-        body: Joi.string().min(5).max(2000).required(),
-        picture: Joi.string().required()
+        body: Joi.string().min(5).max(20000).required(),
+        picture: Joi.string().required(),
+        class: Joi.string().required(),
     })
 
     return schema.validate(news);

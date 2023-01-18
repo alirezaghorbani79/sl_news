@@ -3,7 +3,7 @@ import Image from 'next/image'
 import styles from './NewsCard.module.scss'
 import dummyImg from '../../assets/images/dummy.png'
 
-const NewsCard = () => {
+const NewsCard = ({title, body}) => {
   return (
     <div className={styles.card}>
       <div className={styles.infoBox}>
@@ -14,14 +14,10 @@ const NewsCard = () => {
         </div>
         <BookmarkIcon className={styles.bookmarkIcon} />
       </div>
-      <h3 className={styles.title}>Title The standard Lorem Ipsum passage</h3>
+      <h3 className={styles.title}>{title}</h3>
       <div className={styles.newsBody}>
         <div className={styles.text}>
-          Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-          accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae
-          ab illo inventore veritatis et quasi architecto beatae vitae dicta
-          sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-          aspernatur aut
+          {body}
         </div>
         <Image src={dummyImg} />
       </div>
