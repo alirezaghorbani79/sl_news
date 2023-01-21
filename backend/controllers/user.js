@@ -53,6 +53,7 @@ exports.login = catchAsync(async (req, res, next) => {
     if (!user) {
         res.status(404).send('User not found!')
     }
+    console.log(user)
 
     if (user.password !== req.body.password) {
         res.status(401).send('User not found!')
@@ -73,10 +74,11 @@ exports.updateMe = catchAsync(async (req, res) => {
         {
             email: req.body.email,
             name: req.body.name,
-            password: req.body.password
+            password: req.body.password,
+            favoriteClasses: req.body.favoriteClasses
         }, {
         where: {
-            id: req.params.id
+            id: req.user.id
         }
     });
 

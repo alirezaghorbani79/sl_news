@@ -4,6 +4,7 @@ import { login, signUp } from '../utils/api/api'
 const AUTH_SIGNUP = 'AUTH_SIGNUP'
 const AUTH_SIGNIN = 'AUTH_SIGNIN'
 const AUTH_SIGNOUT = 'AUTH_SIGNOUT'
+const UPDATE_FAV = 'UPDATE_FAV'
 
 const AuthStateContext = createContext()
 const AuthDispatchContext = createContext()
@@ -13,20 +14,28 @@ const AuthProvider = ({ children }) => {
     isLoading: false,
     isLoggedIn: false,
     isAdmin: false,
+    name: '',
+    email: '',
+    id: 0,
+    favoriteClasses: [],
   }
 
   const authReducer = (state, action) => {
     const { type, payload } = action
-
+    console.log(payload)
+    let newState
     switch (type) {
       case AUTH_SIGNUP:
-        let newState = { ...state }
+        newState = { ...state }
         if (payload.user.isAdmin) {
           newState.isAdmin = true
         }
         newState.isLoggedIn = true
+        newState.id = payload.user.id
+        newState.name = payload.user.name
+        newState.email = payload.user.email
+        newState.favoriteClasses = payload.user.favoriteClasses
         return newState
-        break
 
       case AUTH_SIGNIN:
         newState = { ...state }
@@ -34,6 +43,18 @@ const AuthProvider = ({ children }) => {
           newState.isAdmin = true
         }
         newState.isLoggedIn = true
+        newState.id = payload.user.id
+        newState.name = payload.user.name
+        newState.email = payload.user.email
+        newState.favoriteClasses = payload.user.favoriteClasses.split(',')
+
+        return newState
+
+      case UPDATE_FAV:
+        newState = { ...state }
+        console.log(payload.favoriteClasses)
+        newState.favoriteClasses = payload.favoriteClasses.split(',')
+
         return newState
     }
   }
@@ -52,7 +73,7 @@ const AuthProvider = ({ children }) => {
 const doLogin = async (dispatch, { username, password }) => {
   try {
     const { data } = await login(username, password)
-    dispatch({ type: AUTH_SIGNIN, payload: data })
+    dispatch({ type: AUTH_SIGNIN, payload: data.data })
   } catch (error) {
     console.log(error)
   }
@@ -61,9 +82,17 @@ const doLogin = async (dispatch, { username, password }) => {
 const doSignup = async (disaptch, { name, email, password }) => {
   try {
     const { data } = await signUp(name, email, password)
-    disaptch({ type: AUTH_SIGNUP, payload: data })
+    disaptch({ type: AUTH_SIGNUP, payload: data.data })
   } catch (error) {
     console.group(error)
+  }
+}
+
+const updateFav = async (disaptch, { newFav }) => {
+  try {
+    disaptch({ type: UPDATE_FAV, payload: { favoriteClasses: newFav } })
+  } catch (error) {
+    console.log(error)
   }
 }
 
@@ -77,4 +106,4 @@ const useAuthDispatch = () => {
 
 export default AuthProvider
 
-export { useAuth, useAuthDispatch, doLogin, doSignup }
+export { useAuth, useAuthDispatch, doLogin, doSignup, updateFav }

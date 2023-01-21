@@ -1,4 +1,3 @@
-const { News, validateUpdate, validateCreate } = require('../models/news');
 const express = require('express');
 const auth = require('../middleware/auth')
 const admin = require('../middleware/admin')

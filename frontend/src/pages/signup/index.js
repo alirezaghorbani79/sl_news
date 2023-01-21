@@ -3,6 +3,7 @@ import RegisterForm from 'componentes/RegisterForm'
 import { doSignup, useAuth, useAuthDispatch } from 'contexts/AuthContext'
 import RegisterLayout from 'layouts/RegisterLayout'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { useRef } from 'react'
 
 import styles from '../../styles/login.module.scss'
@@ -11,6 +12,8 @@ const Singup = () => {
   const nameRef = useRef()
   const userRef = useRef()
   const passwordRef = useRef()
+
+  const router = useRouter()
 
   const authDispatch = useAuthDispatch()
   const { isLoggedIn } = useAuth()
@@ -21,6 +24,10 @@ const Singup = () => {
     const email = userRef.current.value
     const password = passwordRef.current.value
     doSignup(authDispatch, { name, email, password })
+  }
+
+  if (isLoggedIn) {
+    router.push('/')
   }
 
   return (

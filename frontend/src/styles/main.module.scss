@@ -1,0 +1,18 @@
+.body {
+    margin: 40px 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.filterBox {
+    background: #D9D9D9;
+    width: 260px;
+    height: 200px;
+    border-radius: 16px;
+}
+
+.input {
+    margin: 0 20px;
+    padding-top: 10px;
+}

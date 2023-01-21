@@ -2,13 +2,15 @@ import Button from 'componentes/Button'
 import { doLogin, useAuth, useAuthDispatch } from 'contexts/AuthContext'
 import RegisterLayout from 'layouts/RegisterLayout'
 import Link from 'next/link'
-import { useRef } from 'react'
+import { useRouter } from 'next/router'
+import { useEffect, useRef } from 'react'
 
 import styles from '../../styles/login.module.scss'
 
 const Login = () => {
   const userRef = useRef()
   const passwordRef = useRef()
+  const router = useRouter()
 
   const authDispatch = useAuthDispatch()
   const { isLoggedIn } = useAuth()
@@ -19,6 +21,12 @@ const Login = () => {
     const password = passwordRef.current.value
     doLogin(authDispatch, { username, password })
   }
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      router.push('/')
+    }
+  }, [isLoggedIn])
 
   return (
     <RegisterLayout>
