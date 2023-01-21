@@ -16,11 +16,10 @@ export default function Home({ data }) {
       console.log(newData)
     })
   }
-  console.log(newData)
   
   
   newData = newData.sort((a, b) => new Date(b[order]) - new Date(a[order]))
-  console.log(newData)
+  console.log(favoriteClasses)
 
   const changeOrderHandler = (e) => {
     setOrder(e.target.value)

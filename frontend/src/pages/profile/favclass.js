@@ -83,7 +83,7 @@ const FavClass = () => {
             Technology
           </label>
         </form>
-        <Button onClick={formSubmitHandler}>add news</Button>
+        <Button onClick={formSubmitHandler}>save</Button>
       </div>
     </ProfileLayout>
   )

@@ -57,7 +57,7 @@ const addBookmark = async (id) => {
 
 const getBookmarks = async () => {
   const res = await axios.get('/api/user/bookmarks')
-
+  console.log(res)
   return res.data
 }
 

@@ -2,7 +2,6 @@ const Sequelize = require('sequelize')
 const sequelize = require('../utils/database')
 const Joi = require('joi')
 
-
 const News = sequelize.define('news', {
     id: {
         type: Sequelize.INTEGER,

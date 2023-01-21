@@ -34,7 +34,7 @@ const AuthProvider = ({ children }) => {
         newState.id = payload.user.id
         newState.name = payload.user.name
         newState.email = payload.user.email
-        newState.favoriteClasses = payload.user.favoriteClasses
+        newState.favoriteClasses = payload.user.favoriteClasses.split(',')
         return newState
 
       case AUTH_SIGNIN:

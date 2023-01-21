@@ -13,11 +13,10 @@ router.put("/updateMe", [auth], userController.updateMe);
 
 router.get("/bookmarks", auth, async (req, res) => {
   const bookmarks = await Bookmark.findAll({
-    where: { userId: req.user.id },
-    attributes: ["id"],
+    where: { userId: req.user.id }
   });
 
-  const bookmarksIds = bookmarks.map((el) => el.id);
+  const bookmarksIds = bookmarks.map((el) => el.newsId);
 
   console.log(bookmarksIds)
   const news = await News.findAll();
